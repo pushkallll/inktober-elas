@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-warm: var(--warm);
+  --color-card: var(--card);
+  --font-sans: var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+  --font-serif: "Playfair Display", Georgia, serif;
+}
+
+:root {
+  /* Moody, earthy painterly background base (like a warm dim room) */
+  --background: #d6cbbd;
+  /* Deep espresso/charcoal for text, ensuring high contrast on the background */
+  --foreground: #2d241e;
+  /* Soft wood/tan border */
+  --border: #bdae9c;
+  /* Muted shadow/olive */
+  --muted: #7a6e60;
+  /* Warm glowing amber/sienna for accents */
+  --accent: #a36f40;
+  /* Deep warm mahogany/umber */
+  --warm: #5c4431;
+  /* Card — keeps the off-white polaroid design intact */
+  --card: #faf8f5;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+::selection { background: var(--accent); color: var(--card); }
