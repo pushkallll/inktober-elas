@@ -25,7 +25,7 @@ export function UserManagementClient({ users }: { users: any[] }) {
     if (!reason) return;
     const days = prompt("Enter suspension duration in days (e.g., 7):", "7");
     if (!days || isNaN(parseInt(days))) return;
-    
+
     try {
       setProcessingId(userId);
       await suspendUser(userId, parseInt(days), reason);
@@ -40,7 +40,7 @@ export function UserManagementClient({ users }: { users: any[] }) {
     const reason = prompt("Enter permanent ban reason (Internal):");
     if (!reason) return;
     if (!confirm("WARNING: This permanently bans the user and hides all their content. Proceed?")) return;
-    
+
     try {
       setProcessingId(userId);
       await banUser(userId, reason);
@@ -66,7 +66,7 @@ export function UserManagementClient({ users }: { users: any[] }) {
         <tbody className="text-sm">
           {users.map(user => {
             const isSuspended = user.suspended_until && new Date(user.suspended_until) > new Date();
-            
+
             return (
               <tr key={user.id} className="border-b border-foreground/5 hover:bg-black/5 transition-colors">
                 <td className="p-3">
@@ -107,7 +107,7 @@ export function UserManagementClient({ users }: { users: any[] }) {
                   <div className="flex justify-end gap-2">
                     {/* Role Toggles */}
                     {user.role === 'USER' && (
-                      <button 
+                      <button
                         onClick={() => handleRoleChange(user.id, 'MODERATOR')}
                         disabled={processingId === user.id || user.status === 'BANNED'}
                         className="p-2 text-blue-600 hover:bg-blue-50 rounded-[2px] disabled:opacity-50"
@@ -117,7 +117,7 @@ export function UserManagementClient({ users }: { users: any[] }) {
                       </button>
                     )}
                     {user.role === 'MODERATOR' && (
-                      <button 
+                      <button
                         onClick={() => handleRoleChange(user.id, 'USER')}
                         disabled={processingId === user.id || user.status === 'BANNED'}
                         className="p-2 text-orange-600 hover:bg-orange-50 rounded-[2px] disabled:opacity-50"
@@ -126,10 +126,10 @@ export function UserManagementClient({ users }: { users: any[] }) {
                         <ShieldOff className="w-4 h-4" />
                       </button>
                     )}
-                    
+
                     {/* Disciplinary Actions */}
                     {user.role !== 'ADMIN' && user.status !== 'BANNED' && !isSuspended && (
-                      <button 
+                      <button
                         onClick={() => handleSuspend(user.id)}
                         disabled={processingId === user.id}
                         className="p-2 text-orange-600 hover:bg-orange-50 rounded-[2px] disabled:opacity-50"
@@ -138,9 +138,9 @@ export function UserManagementClient({ users }: { users: any[] }) {
                         <AlertTriangle className="w-4 h-4" />
                       </button>
                     )}
-                    
+
                     {user.role !== 'ADMIN' && user.status !== 'BANNED' && (
-                      <button 
+                      <button
                         onClick={() => handleBan(user.id)}
                         disabled={processingId === user.id}
                         className="p-2 text-red-600 hover:bg-red-50 rounded-[2px] disabled:opacity-50"

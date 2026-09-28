@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 
 export default async function ModerationLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
-  
+
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
     redirect("/");

@@ -20,15 +20,15 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusText, setStatusText] = useState("");
   const [error, setError] = useState("");
-  
+
   const [day, setDay] = useState<number>(initialData?.day || (prompts.length > 0 ? prompts[0].day : 0));
   const [title, setTitle] = useState(initialData?.title || "");
   const [anonymous, setAnonymous] = useState(initialData?.anonymous || false);
-  
+
   // Writing specific
   const [genre, setGenre] = useState(initialData?.genre || "Poetry");
   const [writingContent, setWritingContent] = useState(initialData?.writing_content || "");
-  
+
   // Art specific
   const [cloudinaryInfo, setCloudinaryInfo] = useState<any>(initialData ? {
     public_id: initialData.cloudinary_public_id,
@@ -39,7 +39,7 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
   } : null);
 
   const router = useRouter();
-  
+
   const currentPrompt = prompts.find(p => p.day === day);
 
   const [overrideUserId, setOverrideUserId] = useState(initialData?.user_id || "");
@@ -50,7 +50,7 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
       setError("No active prompt for the selected day.");
       return;
     }
-    
+
     if (type === "ART" && !cloudinaryInfo?.secure_url) {
       setError("Please upload your artwork before submitting.");
       return;
@@ -122,14 +122,14 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
       </div>
     );
   }
-  
+
   return (
     <div className="w-full bg-[#f8f5f0]/95 backdrop-blur-[2px] border border-foreground/10 shadow-[0_4px_24px_rgba(0,0,0,0.05)] rounded-[2px] p-6 sm:p-12 relative">
-      
-      
+
+
       {!type ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <button 
+          <button
             onClick={() => setType("ART")}
             className="flex flex-col items-center justify-center p-12 border border-foreground/10 hover:border-foreground/30 bg-white/40 transition-colors group rounded-[2px]"
           >
@@ -139,8 +139,8 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
             <h3 className="font-serif tracking-widest uppercase text-foreground">Art</h3>
             <p className="text-xs text-muted mt-2 uppercase tracking-[0.1em]">Upload image</p>
           </button>
-          
-          <button 
+
+          <button
             onClick={() => setType("WRITING")}
             className="flex flex-col items-center justify-center p-12 border border-foreground/10 hover:border-foreground/30 bg-white/40 transition-colors group rounded-[2px]"
           >
@@ -153,7 +153,7 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
         </div>
       ) : (
         <form className="flex flex-col space-y-8" onSubmit={(e) => handleSubmit(e, false)}>
-          
+
           <div className="flex items-center justify-between border-b border-foreground/10 pb-4">
             <h2 className="font-serif uppercase tracking-widest text-foreground text-sm sm:text-base">
               {type === "ART" ? "Submit Artwork" : "Submit Writing"}
@@ -180,7 +180,7 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
                   {moderationFeedback.reason}
                 </p>
               )}
-              
+
               {moderationFeedback.moderation_feedback && moderationFeedback.moderation_feedback.length > 0 && (
                 <div className="flex flex-col gap-3">
                   <h4 className="text-xs uppercase tracking-wider text-orange-900/70 font-bold mb-1">Specific Feedback</h4>
@@ -202,12 +202,12 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
               )}
             </div>
           )}
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* Day Selection */}
             <div className="flex flex-col space-y-2">
               <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-foreground/70 font-sans">Day</label>
-              <select 
+              <select
                 value={day}
                 onChange={(e) => setDay(Number(e.target.value))}
                 className="bg-white/60 border border-foreground/10 rounded-[2px] p-3 text-foreground focus:outline-none focus:border-foreground/40 focus:bg-white/80 transition-all font-serif appearance-none cursor-pointer"
@@ -217,7 +217,7 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
                 ))}
               </select>
             </div>
-            
+
             {/* Prompt Display */}
             <div className="flex flex-col space-y-2">
               <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-foreground/70 font-sans">Official Prompt</label>
@@ -226,19 +226,19 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
               </div>
             </div>
           </div>
-          
+
           {/* Admin Publish on Behalf */}
           {userRole === "ADMIN" && (
             <div className="bg-orange-50 border border-orange-200 p-4 rounded-[2px]">
               <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-orange-900 font-sans font-bold flex items-center gap-2 mb-2">
                 Admin: Publish on Behalf of User
               </label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={overrideUserId}
                 onChange={(e) => setOverrideUserId(e.target.value)}
-                className="w-full bg-white border border-orange-200 rounded-[2px] p-3 text-sm text-foreground focus:outline-none focus:border-orange-400 transition-all" 
-                placeholder="Enter User ID (Leave blank for yourself)" 
+                className="w-full bg-white border border-orange-200 rounded-[2px] p-3 text-sm text-foreground focus:outline-none focus:border-orange-400 transition-all"
+                placeholder="Enter User ID (Leave blank for yourself)"
               />
               <p className="text-[10px] text-orange-800 mt-1 uppercase tracking-wider">Leave this empty unless publishing for someone else.</p>
             </div>
@@ -247,14 +247,14 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
           {/* Title Input */}
           <div className="flex flex-col space-y-2">
             <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-foreground/70 font-sans">Title</label>
-            <input 
-              type="text" 
-              required 
+            <input
+              type="text"
+              required
               maxLength={100}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="bg-white/60 border border-foreground/10 rounded-[2px] p-3.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-foreground/40 focus:bg-white/80 transition-all font-serif text-lg" 
-              placeholder="Give your piece a title..." 
+              className="bg-white/60 border border-foreground/10 rounded-[2px] p-3.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-foreground/40 focus:bg-white/80 transition-all font-serif text-lg"
+              placeholder="Give your piece a title..."
             />
           </div>
 
@@ -263,7 +263,7 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
             <div className="flex flex-col space-y-2">
               <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-foreground/70 font-sans">Artwork</label>
               {!cloudinaryInfo ? (
-                <CloudinaryUpload 
+                <CloudinaryUpload
                   onUploadSuccess={(info) => {
                     setCloudinaryInfo(info);
                     setError("");
@@ -287,7 +287,7 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
             <>
               <div className="flex flex-col space-y-2">
                 <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-foreground/70 font-sans">Genre</label>
-                <select 
+                <select
                   value={genre}
                   onChange={(e) => setGenre(e.target.value)}
                   className="bg-white/60 border border-foreground/10 rounded-[2px] p-3 text-foreground focus:outline-none focus:border-foreground/40 focus:bg-white/80 transition-all font-serif appearance-none cursor-pointer"
@@ -301,14 +301,14 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
               </div>
               <div className="flex flex-col space-y-2">
                 <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-foreground/70 font-sans">Content</label>
-                <textarea 
+                <textarea
                   required={!isSubmitting}
-                  rows={12} 
+                  rows={12}
                   maxLength={50000}
                   value={writingContent}
                   onChange={(e) => setWritingContent(e.target.value)}
-                  className="bg-white/60 border border-foreground/10 rounded-[2px] p-4 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-foreground/40 focus:bg-white/80 transition-all font-serif text-base resize-y leading-relaxed whitespace-pre-wrap" 
-                  placeholder="Write your piece here..." 
+                  className="bg-white/60 border border-foreground/10 rounded-[2px] p-4 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-foreground/40 focus:bg-white/80 transition-all font-serif text-base resize-y leading-relaxed whitespace-pre-wrap"
+                  placeholder="Write your piece here..."
                 />
               </div>
             </>
@@ -318,11 +318,11 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
           <div className="flex items-center space-x-3 pt-2">
             <label className="flex items-center cursor-pointer group">
               <div className="relative flex items-center justify-center">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   checked={anonymous}
                   onChange={(e) => setAnonymous(e.target.checked)}
-                  className="peer sr-only" 
+                  className="peer sr-only"
                 />
                 <div className="w-4 h-4 border border-foreground/30 rounded-[1px] peer-checked:bg-foreground peer-checked:border-foreground transition-colors group-hover:border-foreground/60"></div>
                 <svg className="absolute w-3 h-3 text-background pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -363,8 +363,8 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mt-4">
-            <button 
-              type="button" 
+            <button
+              type="button"
               onClick={(e) => handleSubmit(e, true)}
               disabled={isSubmitting}
               className="flex-1 bg-white border border-foreground/20 text-foreground py-4 rounded-[2px] font-sans uppercase tracking-[0.2em] text-xs hover:bg-black/5 active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
@@ -372,16 +372,16 @@ export function SubmitForm({ prompts, initialData, userRole = "USER", moderation
               <Save className="w-4 h-4 mr-2" />
               Save Draft
             </button>
-            
-            <button 
-              type="submit" 
+
+            <button
+              type="submit"
               disabled={isSubmitting}
               className="flex-[2] bg-[#2d241e] text-[#f8f5f0] py-4 rounded-[2px] font-sans uppercase tracking-[0.2em] text-xs hover:bg-[#1a1511] active:scale-[0.99] transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
               {isSubmitting ? (statusText || "Processing...") : "Submit for Review"}
             </button>
           </div>
-          
+
         </form>
       )}
     </div>

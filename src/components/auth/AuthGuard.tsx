@@ -42,7 +42,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
         <div className="w-full max-w-[500px] bg-[#f8f5f0]/95 backdrop-blur-[2px] border border-foreground/10 shadow-lg p-10 sm:p-14 flex flex-col items-center text-center relative">
           <h1 className="text-2xl font-serif text-foreground mb-2">INKTOBER 2026 × ELAS</h1>
           <p className="text-muted italic font-serif mb-8">Create. Write. Share.</p>
-          
+
           {error && (
             <div className="bg-red-50 text-red-800 border border-red-200 text-xs p-3 mb-6 w-full text-left">
               <span className="font-bold uppercase tracking-wider block mb-1">Authentication Error</span>
@@ -56,7 +56,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
           >
             Continue with Google
           </button>
-          
+
           <p className="mt-6 text-[10px] sm:text-xs text-muted uppercase tracking-widest font-sans">
             Campus accounts only
           </p>

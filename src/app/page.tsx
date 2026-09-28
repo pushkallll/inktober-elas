@@ -6,7 +6,7 @@ export const revalidate = 60; // Cache for 60 seconds (ISR)
 
 export default async function Home() {
   const supabase = createPublicClient();
-  
+
   const { data: submissions } = await supabase
     .from("submissions")
     .select(`

@@ -29,7 +29,7 @@ export function TopNav() {
     { label: "Art", href: "/art", icon: ImageIcon },
     { label: "Writing", href: "/writing", icon: PenTool },
   ];
-  
+
   const accountNavItems = [
     { label: "Profile", href: "/profile", icon: User },
     { label: "My Submissions", href: "/my-submissions", icon: PenTool },
@@ -82,10 +82,10 @@ export function TopNav() {
               </Link>
             );
           })}
-          
+
           {state === "AUTHENTICATED" && profile && (
             <div className="relative" ref={dropdownRef}>
-              <button 
+              <button
                 onClick={() => setIsAccountDropdownOpen(!isAccountDropdownOpen)}
                 className="flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-muted hover:text-foreground transition-colors"
               >
@@ -109,7 +109,7 @@ export function TopNav() {
                         </span>
                       </div>
                     )}
-                    
+
                     {accountNavItems.map((item) => (
                       <Link
                         key={item.href}
@@ -245,7 +245,7 @@ export function TopNav() {
                           </span>
                         )}
                       </div>
-                      
+
                       {accountNavItems.map((item) => (
                         <Link
                           key={item.href}

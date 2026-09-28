@@ -15,7 +15,7 @@ export default async function AdminGuidelinesPage() {
       <div className="bg-[#f8f5f0] border border-foreground/10 p-6 rounded-[2px] shadow-sm">
         <h2 className="text-xl font-serif text-foreground mb-6">Community Guidelines Management</h2>
         <p className="text-sm text-muted mb-6">Manage the community guidelines presented to users.</p>
-        
+
         <div className="flex flex-col gap-4">
           {guidelines?.map((guideline: any) => (
             <div key={guideline.id} className="bg-white/70 border border-foreground/10 p-4 rounded-[2px] shadow-sm">

@@ -33,11 +33,11 @@ export async function claimPenNameAndCreateProfile(
 ): Promise<UserProfile> {
   const supabase = createClient();
   const normalized = penName.trim().toLowerCase().replace(/\s+/g, "");
-  
+
   if (!normalized) {
     throw new Error("Pen name cannot be empty.");
   }
-  
+
   // Call the secure RPC function to create the profile
   const { data, error } = await supabase
     .rpc('claim_pen_name', {

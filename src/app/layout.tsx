@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { InteractiveBanner } from "@/components/banner/InteractiveBanner";
 import { TopNav } from "@/components/navigation/TopNav";
-import { PaintStrokes } from "@/components/decorations/PaintStrokes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,8 +35,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     >
       <body className="relative min-h-full flex flex-col bg-background text-foreground">
         <AuthProvider>
-          {/* Background paint decorations */}
-          <PaintStrokes />
 
           <div className="relative z-10 flex flex-col min-h-full">
             <TopNav />

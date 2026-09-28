@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export default async function SubmitPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
-  
+
   let role = "USER";
   if (user) {
     const { data: profile } = await supabase.from("users").select("role").eq("id", user.id).single();
@@ -20,7 +20,7 @@ export default async function SubmitPage() {
     .select("id, day, prompt")
     .eq("active", true)
     .order("day", { ascending: true });
-    
+
   return (
     <AuthGuard>
       <PageHeader

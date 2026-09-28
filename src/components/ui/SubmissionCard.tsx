@@ -16,9 +16,9 @@ interface SubmissionCardProps {
 export function SubmissionCard({ submission, priority, initialYuppsied = false }: SubmissionCardProps) {
   const { state, login } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   const [yuppsied, setYuppsied] = useState(initialYuppsied);
-  
+
   useEffect(() => {
     setYuppsied(initialYuppsied);
   }, [initialYuppsied]);

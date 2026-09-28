@@ -33,9 +33,9 @@ export function CloudinaryUpload({ onUploadSuccess, onUploadError, disabled }: C
     setIsUploading(true);
     try {
       setStatusText("Compressing artwork...");
-      
+
       let compressedFile = file;
-      
+
       if (compressedFile.size > TARGET_MAX_BYTES) {
         // Strategy: First reduce quality gradually, then if needed, reduce dimensions
         const compressionSteps = [
@@ -57,7 +57,7 @@ export function CloudinaryUpload({ onUploadSuccess, onUploadError, disabled }: C
           } catch (err) {
             console.error("Compression step failed:", err);
           }
-          
+
           if (compressedFile.size <= TARGET_MAX_BYTES) {
             break;
           }
@@ -135,8 +135,8 @@ export function CloudinaryUpload({ onUploadSuccess, onUploadError, disabled }: C
   return (
     <div className="w-full flex flex-col gap-2">
       <label className={`
-        relative flex flex-col items-center justify-center w-full h-32 
-        border-2 border-dashed border-foreground/20 bg-white/40 
+        relative flex flex-col items-center justify-center w-full h-32
+        border-2 border-dashed border-foreground/20 bg-white/40
         hover:bg-white/60 transition-colors cursor-pointer
         ${(disabled || isUploading) ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}
       `}>
@@ -150,10 +150,10 @@ export function CloudinaryUpload({ onUploadSuccess, onUploadError, disabled }: C
             </p>
           )}
         </div>
-        <input 
-          type="file" 
-          className="hidden" 
-          accept="image/*" 
+        <input
+          type="file"
+          className="hidden"
+          accept="image/*"
           onChange={handleFileChange}
           disabled={disabled || isUploading}
         />

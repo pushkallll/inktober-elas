@@ -39,7 +39,7 @@ export async function toggleYuppsie(submissionId: string, intent: boolean): Prom
       .delete()
       .eq("user_id", user.id)
       .eq("submission_id", submissionId);
-    
+
     if (deleteError) return { error: "DELETE_FAILED" };
     yuppsied = false;
   }

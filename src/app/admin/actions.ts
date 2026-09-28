@@ -58,7 +58,7 @@ export async function suspendUser(userId: string, days: number, reason: string) 
 
   const { error } = await adminClient
     .from("users")
-    .update({ 
+    .update({
       suspended_until: suspendedUntil.toISOString(),
       suspension_reason: reason
     })
@@ -82,7 +82,7 @@ export async function banUser(userId: string, reason: string) {
 
   const { error } = await adminClient
     .from("users")
-    .update({ 
+    .update({
       status: "BANNED",
       suspension_reason: reason
     })
@@ -126,7 +126,7 @@ export async function processAppeal(appealId: string, decision: "ACCEPTED" | "DE
   // Update appeal
   const { error } = await adminClient
     .from("appeals")
-    .update({ 
+    .update({
       status: decision,
       reviewed_by: actorId,
       reviewed_at: new Date().toISOString(),

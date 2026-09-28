@@ -5,7 +5,7 @@ export const revalidate = 60;
 
 export default async function WritingPage() {
   const supabase = createPublicClient();
-  
+
   const { data: submissions } = await supabase
     .from("submissions")
     .select(`

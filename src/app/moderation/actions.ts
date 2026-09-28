@@ -113,6 +113,6 @@ export async function moderateSubmission(
   revalidatePath("/art");
   revalidatePath("/writing");
   revalidatePath("/");
-  
+
   return { success: true };
 }

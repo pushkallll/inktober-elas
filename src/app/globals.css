@@ -32,6 +32,10 @@
 
 body {
   background-color: var(--background);
+  background-image: url('/bg-main.jpg');
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 100% auto;
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;

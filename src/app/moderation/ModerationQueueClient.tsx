@@ -17,8 +17,8 @@ export function ModerationQueueClient({ initialSubmissions, currentStatus }: { i
             key={tab}
             onClick={() => router.push(`/moderation?status=${tab}`)}
             className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-[2px] transition-colors ${
-              currentStatus === tab 
-                ? "bg-foreground text-background" 
+              currentStatus === tab
+                ? "bg-foreground text-background"
                 : "bg-transparent text-foreground/60 hover:bg-black/5"
             }`}
           >
@@ -36,8 +36,8 @@ export function ModerationQueueClient({ initialSubmissions, currentStatus }: { i
       ) : (
         <div className="flex flex-col gap-2">
           {initialSubmissions.map(sub => (
-            <div 
-              key={sub.id} 
+            <div
+              key={sub.id}
               onClick={() => router.push(`/moderation/${sub.id}`)}
               className="bg-white/70 hover:bg-white/90 cursor-pointer border border-foreground/10 p-4 rounded-[2px] shadow-sm flex flex-col md:flex-row gap-4 justify-between items-start md:items-center transition-colors"
             >

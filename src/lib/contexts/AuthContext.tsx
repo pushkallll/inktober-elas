@@ -6,13 +6,13 @@ import { createClient } from "../supabase/client";
 import { getUserProfile, claimPenNameAndCreateProfile } from "../supabase/db";
 import { UserProfile } from "../types/user";
 
-export type AuthState = 
-  | "LOADING" 
-  | "SIGNED_OUT" 
-  | "AUTHENTICATED" 
-  | "ONBOARDING" 
-  | "SUSPENDED" 
-  | "BANNED" 
+export type AuthState =
+  | "LOADING"
+  | "SIGNED_OUT"
+  | "AUTHENTICATED"
+  | "ONBOARDING"
+  | "SUSPENDED"
+  | "BANNED"
   | "ERROR";
 
 interface AuthContextType {
@@ -69,7 +69,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     setUser(supabaseUser);
-    
+
     try {
       const userProfile = await getUserProfile(supabaseUser.id);
       if (!userProfile) {
@@ -96,7 +96,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const start = performance.now();
       console.log(`[OAuth Trace] Click to login start: 0ms`);
       setError(null);
-      
+
       const t1 = performance.now();
       const supabase = createClient();
       const t2 = performance.now();
@@ -111,7 +111,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
       const t4 = performance.now();
       console.log(`[OAuth Trace] signInWithOAuth invocation took: ${t4 - t3}ms`);
-      
+
       if (error) throw error;
       // redirect happens automatically
       console.log(`[OAuth Trace] Total time before redirect: ${performance.now() - start}ms`);

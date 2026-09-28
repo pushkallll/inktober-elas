@@ -68,13 +68,13 @@ export default async function ProfilePage() {
 
       <div className="w-full max-w-[1000px] mx-auto pb-16">
         <div className="flex flex-col md:flex-row gap-8">
-            
+
             {/* Left Column: Your Work */}
             <div className="flex-1 flex flex-col gap-6">
               <div className="border-b border-foreground/10 pb-2 mb-2">
                 <h2 className="font-serif uppercase tracking-widest text-foreground text-sm">Your Work</h2>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <Link href="/my-submissions" className="bg-[#f8f5f0]/80 backdrop-blur-sm border border-foreground/10 p-5 rounded-[2px] flex flex-col items-center justify-center text-center hover:bg-white transition-colors group">
                   <div className="w-10 h-10 rounded-full bg-foreground/5 flex items-center justify-center mb-3 group-hover:bg-foreground/10 transition-colors">
@@ -83,7 +83,7 @@ export default async function ProfilePage() {
                   <span className="text-xl font-serif text-foreground mb-1">{posts}</span>
                   <span className="text-[10px] uppercase tracking-wider text-muted font-bold">Posts</span>
                 </Link>
-                
+
                 <Link href="/my-submissions" className="bg-[#f8f5f0]/80 backdrop-blur-sm border border-foreground/10 p-5 rounded-[2px] flex flex-col items-center justify-center text-center hover:bg-white transition-colors group">
                   <div className="w-10 h-10 rounded-full bg-foreground/5 flex items-center justify-center mb-3 group-hover:bg-foreground/10 transition-colors">
                     <PenTool className="w-5 h-5 text-foreground/80" />
@@ -91,7 +91,7 @@ export default async function ProfilePage() {
                   <span className="text-xl font-serif text-foreground mb-1">{drafts}</span>
                   <span className="text-[10px] uppercase tracking-wider text-muted font-bold">Drafts</span>
                 </Link>
-                
+
                 <Link href="/my-submissions" className="bg-[#f8f5f0]/80 backdrop-blur-sm border border-foreground/10 p-5 rounded-[2px] flex flex-col items-center justify-center text-center hover:bg-white transition-colors group">
                   <div className="w-10 h-10 rounded-full bg-amber-500/10 flex items-center justify-center mb-3 group-hover:bg-amber-500/20 transition-colors">
                     <Clock className="w-5 h-5 text-amber-700" />
@@ -99,7 +99,7 @@ export default async function ProfilePage() {
                   <span className="text-xl font-serif text-foreground mb-1">{pending}</span>
                   <span className="text-[10px] uppercase tracking-wider text-amber-800 font-bold">Pending</span>
                 </Link>
-                
+
                 <Link href="/my-submissions" className="bg-[#f8f5f0]/80 backdrop-blur-sm border border-foreground/10 p-5 rounded-[2px] flex flex-col items-center justify-center text-center hover:bg-white transition-colors group">
                   <div className="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center mb-3 group-hover:bg-red-500/20 transition-colors">
                     <XCircle className="w-5 h-5 text-red-700" />
@@ -118,7 +118,7 @@ export default async function ProfilePage() {
                     {isAdmin ? "Administration" : "Moderation"}
                   </h2>
                 </div>
-                
+
                 <div className="flex flex-col gap-3">
                   <Link href="/moderation" className="bg-[#f8f5f0]/95 backdrop-blur-sm border border-foreground/10 p-4 rounded-[2px] flex items-center gap-4 hover:bg-white hover:border-amber-800/30 transition-all group shadow-sm">
                     <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
@@ -141,7 +141,7 @@ export default async function ProfilePage() {
                           <p className="text-xs text-muted">Manage the platform</p>
                         </div>
                       </Link>
-                      
+
                       <Link href="/admin/users" className="bg-[#f8f5f0]/95 backdrop-blur-sm border border-foreground/10 p-4 rounded-[2px] flex items-center gap-4 hover:bg-white hover:border-foreground/30 transition-all group shadow-sm">
                         <div className="w-10 h-10 rounded-full bg-foreground/5 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                           <Users className="w-5 h-5 text-foreground/80" />
@@ -161,7 +161,7 @@ export default async function ProfilePage() {
                           <p className="text-xs text-muted">Review and resolve appeals</p>
                         </div>
                       </Link>
-                      
+
                       <Link href="/admin/prompts" className="bg-[#f8f5f0]/95 backdrop-blur-sm border border-foreground/10 p-4 rounded-[2px] flex items-center gap-4 hover:bg-white hover:border-foreground/30 transition-all group shadow-sm">
                         <div className="w-10 h-10 rounded-full bg-foreground/5 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                           <BookOpen className="w-5 h-5 text-foreground/80" />
@@ -186,7 +186,7 @@ export default async function ProfilePage() {
                 </div>
               </div>
             )}
-            
+
           </div>
         </div>
     </AuthGuard>

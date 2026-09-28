@@ -18,7 +18,7 @@ export function WritingClient({ initialSubmissions }: { initialSubmissions: any[
   const [sort, setSort] = useState<SortOption>("LATEST");
   const [userYuppsies, setUserYuppsies] = useState<Set<string>>(new Set());
   const { state: authState } = useAuth();
-  
+
   useEffect(() => {
     if (authState === "AUTHENTICATED" && initialSubmissions.length > 0) {
       const ids = initialSubmissions.map(s => s.id);

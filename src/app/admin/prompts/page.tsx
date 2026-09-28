@@ -15,7 +15,7 @@ export default async function AdminPromptsPage() {
       <div className="bg-[#f8f5f0] border border-foreground/10 p-6 rounded-[2px] shadow-sm">
         <h2 className="text-xl font-serif text-foreground mb-6">Prompts Management</h2>
         <p className="text-sm text-muted mb-6">Manage the official 31-day prompt list for Inktober 2026.</p>
-        
+
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>

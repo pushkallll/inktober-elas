@@ -51,7 +51,7 @@ export function AppealsClient({ appeals }: { appeals: any[] }) {
                 {format(new Date(appeal.submitted_at), "MMM d, h:mm a")}
               </span>
             </div>
-            
+
             <p className="text-sm font-serif text-foreground/90 mb-2">
               <strong>User:</strong> {appeal.users?.pen_name} ({appeal.user_id})
             </p>
@@ -60,7 +60,7 @@ export function AppealsClient({ appeals }: { appeals: any[] }) {
                 Target: {appeal.target_id}
               </p>
             )}
-            
+
             <div className="bg-orange-50 border border-orange-100 p-3 rounded-[2px]">
               <p className="text-sm text-orange-900 font-serif whitespace-pre-wrap">
                 "{appeal.appeal_text}"
@@ -74,7 +74,7 @@ export function AppealsClient({ appeals }: { appeals: any[] }) {
               </div>
             )}
           </div>
-          
+
           {appeal.status === 'PENDING' && (
             <div className="flex flex-col gap-2 shrink-0">
               <button
