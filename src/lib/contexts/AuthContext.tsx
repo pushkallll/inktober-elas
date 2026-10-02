@@ -128,14 +128,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const completeOnboarding = async (penName: string) => {
-    if (!user || !user.email) return;
+    if (!user || !user.email) {
+      console.log("[ONBOARDING DIAGNOSTICS] completeOnboarding failed: Missing user or email", { user: !!user, email: !!user?.email });
+      return;
+    }
+    console.log("[ONBOARDING DIAGNOSTICS] completeOnboarding initiated for:", user.id);
     try {
       setError(null);
       setState("LOADING");
       const newProfile = await claimPenNameAndCreateProfile(user.id, user.email, penName);
+      console.log("[ONBOARDING DIAGNOSTICS] completeOnboarding succeeded. Profile created:", !!newProfile);
       setProfile(newProfile);
       setState("AUTHENTICATED");
     } catch (err: any) {
+      console.log("[ONBOARDING DIAGNOSTICS] completeOnboarding caught error:", {
+        message: err.message,
+        code: err.code
+      });
       if (err.message === "pen_name_taken") {
         setError("That pen name is already taken. Please choose another.");
       } else {

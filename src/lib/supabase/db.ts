@@ -39,6 +39,8 @@ export async function claimPenNameAndCreateProfile(
     throw new Error("Pen name cannot be empty.");
   }
 
+  console.log("[ONBOARDING DIAGNOSTICS] Starting claimPenNameAndCreateProfile for:", { userId, email, penName: penName.trim() });
+
   // Call the secure RPC function to create the profile
   const { data, error } = await supabase
     .rpc('claim_pen_name', {
@@ -46,6 +48,14 @@ export async function claimPenNameAndCreateProfile(
       new_pen_name_normalized: normalized
     })
     .single();
+
+  console.log("[ONBOARDING DIAGNOSTICS] RPC claim_pen_name completed. Result:", {
+    hasData: !!data,
+    hasError: !!error,
+    errorCode: error?.code,
+    errorMessage: error?.message,
+    errorDetails: error?.details
+  });
 
   if (error) {
     if (error.code === '23505') { // Unique violation
@@ -55,6 +65,7 @@ export async function claimPenNameAndCreateProfile(
   }
 
   const userData = data as any;
+  console.log("[ONBOARDING DIAGNOSTICS] User data received from RPC:", userData ? "Exists" : "Null");
 
   return {
     id: userData.id,
