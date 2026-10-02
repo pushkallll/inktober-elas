@@ -1,13 +1,24 @@
 "use client";
 
 import { useAuth } from "@/lib/contexts/AuthContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function AuthGuard({ children }: { children: React.ReactNode }) {
   const { state, error, login, completeOnboarding } = useAuth();
   const [penName, setPenName] = useState("");
   const [onboardingError, setOnboardingError] = useState("");
+  const [urlError, setUrlError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const errParam = params.get('error');
+      if (errParam) {
+        setUrlError(errParam);
+      }
+    }
+  }, []);
 
   const handleOnboarding = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,10 +54,10 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
           <h1 className="text-2xl font-serif text-foreground mb-2">INKTOBER 2026 × ELAS</h1>
           <p className="text-muted italic font-serif mb-8">Create. Write. Share.</p>
 
-          {error && (
+          {(error || urlError) && (
             <div className="bg-red-50 text-red-800 border border-red-200 text-xs p-3 mb-6 w-full text-left">
               <span className="font-bold uppercase tracking-wider block mb-1">Authentication Error</span>
-              {error}
+              {error || urlError}
             </div>
           )}
 

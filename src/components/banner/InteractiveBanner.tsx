@@ -7,6 +7,9 @@ interface BannerProps {
 }
 
 export function InteractiveBanner({ text }: BannerProps) {
+  // DEBUGGING: Log prop received by client component
+  console.log("INTERACTIVE BANNER COMPONENT DEBUG:", { text });
+
   const containerRef = useRef<HTMLDivElement>(null);
   const blockRef = useRef<HTMLDivElement>(null);
   const position = useRef(0);

@@ -12,6 +12,7 @@ export async function getUserProfile(userId: string): Promise<UserProfile | null
   if (error || !data) {
     if (error?.code !== 'PGRST116') { // PGRST116 means no rows returned
       console.error("Error fetching user profile:", error);
+      throw new Error("Database error while fetching profile.");
     }
     return null;
   }
